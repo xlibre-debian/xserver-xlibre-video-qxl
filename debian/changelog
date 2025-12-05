@@ -1,3 +1,9 @@
+xserver-xlibre-video-qxl (0.1.6.3-1) unstable; urgency=medium
+
+  * New upstream version 0.1.6.3
+
+ -- NexusSfan <nexussfan@duck.com>  Thu, 04 Dec 2025 17:05:47 -0800
+
 xserver-xlibre-video-qxl (0.1.6.2-1) unstable; urgency=medium
 
   * New upstream version 0.1.6.2
