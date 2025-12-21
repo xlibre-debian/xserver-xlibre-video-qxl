@@ -27,11 +27,6 @@
  * functions not responsible for performing rendering, pixmap migration, or
  * memory management.
  */
-
-#ifdef HAVE_DIX_CONFIG_H
-#include <dix-config.h>
-#endif
-
 #include <stdlib.h>
 
 #include "uxa-priv.h"
@@ -161,7 +156,7 @@ Bool uxa_prepare_access(DrawablePtr pDrawable, RegionPtr region, uxa_access_t ac
 	    /* The driver expects a region in drawable coordinates */
 	    REGION_TRANSLATE (pScreen, region, xoff, yoff);
 	}
-	
+
 	result = TRUE;
 
 	if (uxa_screen->info->prepare_access)
@@ -169,7 +164,7 @@ Bool uxa_prepare_access(DrawablePtr pDrawable, RegionPtr region, uxa_access_t ac
 
 	if (region == &region_rec)
 	    REGION_UNINIT (pScreen, &region_rec);
-	
+
 	return result;
 }
 

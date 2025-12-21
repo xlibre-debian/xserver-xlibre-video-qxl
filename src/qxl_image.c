@@ -23,10 +23,7 @@
 /** \file QXLImage.c
  * \author Søren Sandmann <sandmann@redhat.com>
  */
-
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include <string.h>
 #include <assert.h>
@@ -44,7 +41,7 @@ hash_and_copy (const uint8_t *src, int src_stride,
 	       uint32_t hash)
 {
     int i;
-  
+
     for (i = 0; i < height; ++i)
     {
 	const uint8_t *src_line = src + i * src_stride;
@@ -80,7 +77,7 @@ qxl_image_create (qxl_screen_t *qxl, const uint8_t *data,
 #if 0
 	ErrorF ("Must create new image of size %d %d\n", width, height);
 #endif
-	
+
 	/* Chunk */
 
 	/* FIXME: Check integer overflow */
@@ -116,7 +113,7 @@ qxl_image_create (qxl_screen_t *qxl, const uint8_t *data,
 	    hash = hash_and_copy (data, stride,
 				  chunk->data, dest_stride,
 				  Bpp, width, n_lines, hash);
-	    
+
 	    if (tail_bo)
 	    {
 		qxl->bo_funcs->bo_output_bo_reloc(qxl, offsetof(QXLDataChunk, next_chunk),
@@ -125,7 +122,7 @@ qxl_image_create (qxl_screen_t *qxl, const uint8_t *data,
 					       bo, tail_bo);
 
 		chunk->next_chunk = 0;
-		
+
 		tail_bo = bo;
 	    }
 	    else
@@ -148,7 +145,7 @@ qxl_image_create (qxl_screen_t *qxl, const uint8_t *data,
 
 	image->descriptor.id = 0;
 	image->descriptor.type = SPICE_IMAGE_TYPE_BITMAP;
-	
+
 	image->descriptor.flags = 0;
 	image->descriptor.width = width;
 	image->descriptor.height = height;

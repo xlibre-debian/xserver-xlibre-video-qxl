@@ -22,10 +22,10 @@
 
 # Initialize Autoconf
 AC_PREREQ([2.60])
-AC_INIT([xf86-video-qxl],
-        [0.1.6],
-        [https://gitlab.freedesktop.org/xorg/driver/xf86-video-qxl/issues],
-        [xf86-video-qxl])
+AC_INIT([xlibre-xf86-video-qxl],
+        [25.0.0],
+        [https://github.com/X11Libre/xf86-video-qxl/issues],
+        [xlibre-xf86-video-qxl])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CANONICAL_HOST
 
@@ -73,13 +73,6 @@ PKG_CHECK_EXISTS(xfont2,
 # Obtain compiler/linker options for the driver dependencies
 PKG_CHECK_MODULES(XORG, [xorg-server >= 1.18] xproto fontsproto $xfont_pc $REQUIRED_MODULES)
 
-save_CFLAGS="$CFLAGS"
-CFLAGS="$XORG_CFLAGS"
-AC_CHECK_DECL(XSERVER_LIBPCIACCESS,
-	      [XSERVER_LIBPCIACCESS=yes], [XSERVER_LIBPCIACCESS=no],
-	      [#include "xorg-server.h"])
-CFLAGS="$save_CFLAGS"
-
 AC_ARG_ENABLE(kms,
 	      AS_HELP_STRING([--disable-kms],
 	                     [Disable KMS support [[default=enabled]]]),
@@ -94,10 +87,8 @@ else
 	DRM_MODE=no
 fi
 
-if test "x$XSERVER_LIBPCIACCESS" = xyes; then
-    PKG_CHECK_MODULES([PCIACCESS], [pciaccess >= 0.10])
-fi
-AM_CONDITIONAL(XSERVER_LIBPCIACCESS, test "x$XSERVER_LIBPCIACCESS" = xyes)
+PKG_CHECK_MODULES([PCIACCESS], [pciaccess >= 0.10])
+
 save_CFLAGS="$CFLAGS"
 CFLAGS="$DRM_CFLAGS $CFLAGS"
 if test "x$DRM_MODE" = xyes; then
