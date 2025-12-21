@@ -27,11 +27,7 @@
  * This is qxl, a driver for the Qumranet paravirtualized graphics device
  * in qemu.
  */
-
-
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include "qxl.h"
 #include "dfps.h"
@@ -177,7 +173,7 @@ can_accelerate_picture (qxl_screen_t *qxl, PicturePtr pict)
             ErrorF ("Source image (of type %d) can't be accelerated\n",
                     pict->pSourcePict->type);
         }
-     
+
 	return FALSE;
     }
 

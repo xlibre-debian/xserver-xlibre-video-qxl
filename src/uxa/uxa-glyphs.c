@@ -57,11 +57,6 @@
  * Author: Chris Wilson <chris@chris-wilson.co.uk>
  * Based on code by: Keith Packard <keithp@keithp.com> and Owen Taylor <otaylor@fishsoup.net>
  */
-
-#ifdef HAVE_DIX_CONFIG_H
-#include <dix-config.h>
-#endif
-
 #include <stdlib.h>
 
 #include "uxa-priv.h"
@@ -923,7 +918,7 @@ uxa_glyphs_via_mask(CARD8 op,
 		dixDestroyPixmap(pixmap, 0);
 		return 1;
 	}
-	
+
 	component_alpha = NeedsComponent(maskFormat->format);
 	mask = CreatePicture(0, &pixmap->drawable,
 			      maskFormat, CPComponentAlpha,
